@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "password-manager-9be06": {
+      "hosting": {
+        "password-manager": [
+          "dcty-pwm-web-app"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "password-manager-9be06"
+  }
+}

@@ -1,0 +1,50 @@
+<div class="container mx-auto my-16">
+    <h1 class="text-5xl font-bold mt-0 mb-8">Daryl's Password Manager</h1>
+    <button (click)="addState()" class="mb-5 mx-0.5 px-5 py-3 text-sm bg-blue-500 text-white shadow rounded-md"
+    [disabled]="formState === 'Add a New'" [style.opacity]="formState === 'Add a New' ? 0.5 : 1">Add a New Site</button>
+
+    <div class="px-20 py-10 mb-10 my-5 bg-blue-50 border-4 border-gray-200 rounded-lg">
+        <h2 class="text-3xl text-center font-bold">{{ formState }} Site</h2>
+        <p class="text-center">using the form below.</p>
+        <form #f="ngForm" (ngSubmit)="onSubmit(f.value)">
+            <div class="flex flex-col py-1">
+                <label class="text-lg font-medium mb-2">Site Name<span class="text-red-500 text-2xs">*</span></label>
+                <input [(ngModel)]="siteName" type="text" name="siteName" class="border-2 border-gray-300 p-2 rounded-lg w-full" placeholder="Google" required/>
+            </div>
+            <div class="flex flex-col py-1">
+                <label class="text-lg font-medium mb-2">Site URL<span class="text-red-500 text-2xs">*</span></label>
+                <input [(ngModel)]="siteURL" type="text" name="siteURL" class="border-2 border-gray-300 p-2 rounded-lg w-full" placeholder="https://google.com" required/>
+            </div>
+            <div class="flex flex-col py-1">
+                <label class="text-lg font-medium mb-2">Site Image URL<span class="text-red-500 text-2xs">*</span></label>
+                <input [(ngModel)]="imgURL" type="text" name="imgURL" class="border-2 border-gray-300 p-2 rounded-lg w-full" placeholder="Image URL" required/>
+            </div>
+
+            <button class="mt-10 mx-0.5 px-5 py-3 text-sm bg-blue-500 text-white shadow rounded-md">{{ formState }} Site</button>
+            <button class="mt-10 mx-0.5 px-5 py-3 text-sm bg-red-500 text-white shadow rounded-md">Cancel</button>
+            <button (click)="clearForm()" class="mt-10 mx-0.5 px-5 py-3 text-sm bg-gray-500 text-white shadow rounded-md">Clear Form</button>
+        </form>
+    </div>
+
+    <div *ngIf="isSuccessful" class="p-5 my-5 font-bold bg-teal-100 text-teal-500 text-center">
+        {{ successMessage }}
+    </div>
+    <div *ngIf="isError" class="p-5 font-bold bg-red-100 text-red-500 text-center">
+        Oops! Something went wrong, please try again!
+    </div>
+
+    <div class="grid grid-cols-3 gap-5">
+        <div *ngFor="let site of allSites | async" class="shadow-lg border-2 bg-blue-50 border-gray-200">
+            <img class="py-5" [src]="site.imgURL" alt="">
+            <h3 class="p-3 text-xl font-bold">{{site.siteName}}</h3>
+            <a href="{{site.siteURL}}" target="_blank" class="w-60 m-3 px-3 bg-blue-200 text-blue-800 rounded-lg text-sm">{{site.siteURL}}</a>
+            <div>
+                <button routerLink="/password-list/" 
+                [queryParams]="{id: site.id, siteName: site.siteName, siteURL: site.siteURL, imgURL: site.imgURL}"
+                class="my-3 ml-3 mx-1 px-3 py-3 text-xs bg-blue-500 text-white shadow rounded-md">Add New Password</button>
+                <button (click)="editSite(site.siteName, site.siteURL, site.imgURL, site.id)" class="my-3 mx-1 px-3 py-3 text-xs bg-gray-500 text-white shadow rounded-md">Edit Site</button>
+                <button (click)="deleteSite(site.id)" class="my-3 mr-3 mx-1 px-3 py-3 text-xs bg-red-500 text-white shadow rounded-md">Delete Site</button>
+            </div>
+        </div>
+    </div>
+</div>
