@@ -14,16 +14,42 @@ import { Observable } from 'rxjs';
 })
 export class PasswordListComponent {
 
-  id !: string;
+  siteId !: string;
   siteName !: string;
   siteURL !: string;
   imgURL !: string;
 
   allPasswordList !: Observable<Array<any>>
 
+  email !: string;
+  username !: string;
+  password !: string;
+  passwordId !: string;
+
+  formState = "Add a New ";
+
+  isSuccessful: boolean = false;
+  successMessage !: string;
+  isError: boolean = false;
+
+  resetForm() {
+    this.email = "";
+    this.username = "";
+    this.password = "";
+    this.passwordId = "";
+
+    this.formState = "Add a New "
+  }
+
+  showAlert(message: string) {
+    this.isSuccessful = true;
+    this.successMessage = message
+  }
+
+
   constructor(private route: ActivatedRoute, private passwordManagerService: PasswordManagerService) {
     this.route.queryParams.subscribe(params => {
-      this.id = params['id'];
+      this.siteId = params['id'];
       this.siteName = params['siteName'];
       this.siteURL = params['siteURL'];
       this.imgURL = params['imgURL'];
@@ -33,18 +59,48 @@ export class PasswordListComponent {
   }
 
   onSubmit(values: object) {
-    this.passwordManagerService.addPassword(values, this.id)
+    if (this.formState == "Add a New ") {
+      this.passwordManagerService.addPassword(values, this.siteId)
+      .then(() => {
+        this.showAlert("Password Added Successfully");
+        this.resetForm();
+      })
+      .catch(err => {
+        console.log(err);
+      })
+    } else {
+      this.passwordManagerService.updatePassword(this.siteId, this.passwordId, values)
+      .then(() => {
+        this.showAlert("Password Updated Successfully");
+        this.resetForm();
+      })
+      .catch(err => {
+        console.log(err);
+      })
+    }
+  }
+
+  renderPasswords() {
+    this.allPasswordList = this.passwordManagerService.loadPasswords(this.siteId);
+  }
+
+  editPassword(email: string, username: string, password: string, passwordId: string) {
+    this.email = email;
+    this.username = username;
+    this.password = password;
+    this.passwordId = passwordId;
+
+    this.formState = "Edit"
+  }
+
+  deletePassword(passwordId: string) {
+    this.passwordManagerService.deletePassword(this.siteId, passwordId)
     .then(() => {
-      console.log("Password Added Successfully");
+      this.showAlert("Password Deleted Successfully");
     })
     .catch(err => {
       console.log(err);
     })
   }
 
-  renderPasswords() {
-    this.allPasswordList = this.passwordManagerService.loadPasswords(this.id);
-  }
-
-  
 }

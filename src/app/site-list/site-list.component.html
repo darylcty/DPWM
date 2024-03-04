@@ -39,7 +39,7 @@
             <h3 class="p-3 text-xl font-bold">{{site.siteName}}</h3>
             <a href="{{site.siteURL}}" target="_blank" class="w-60 m-3 px-3 bg-blue-200 text-blue-800 rounded-lg text-sm">{{site.siteURL}}</a>
             <div>
-                <button routerLink="/password-list/" 
+                <button routerLink="/password-list/"
                 [queryParams]="{id: site.id, siteName: site.siteName, siteURL: site.siteURL, imgURL: site.imgURL}"
                 class="my-3 ml-3 mx-1 px-3 py-3 text-xs bg-blue-500 text-white shadow rounded-md">Add New Password</button>
                 <button (click)="editSite(site.siteName, site.siteURL, site.imgURL, site.id)" class="my-3 mx-1 px-3 py-3 text-xs bg-gray-500 text-white shadow rounded-md">Edit Site</button>
