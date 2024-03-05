@@ -11,8 +11,9 @@ This project is attempts to recreate a secure and convienent password manager. I
 
 ## Features
 - Secure storage of passwords using crypto-js.
-- Illustrative and intuitive design to enable easy management of credentials
-- Seamless user experience with Angular's reactive forms and components
+- Illustrative and intuitive design to enable easy management of credentials.
+- Edit and delete websites and passwords easily.
+- Seamless user experience with Angular's reactive forms and components.
 - Reliable backend management using Firebase's authentication and database services.
 
 ## Screengrabs
