@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { Auth } from '@angular/fire/auth';
 
 @Component({
   selector: 'app-navbar',
@@ -9,4 +11,10 @@ import { Component } from '@angular/core';
 })
 export class NavbarComponent {
 
+  constructor(private router: Router, private auth: Auth) { }
+
+  logout() {
+    this.auth.signOut();
+    this.router.navigate(['/']);
+  }
 }

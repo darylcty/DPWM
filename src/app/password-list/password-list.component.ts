@@ -3,14 +3,14 @@ import { ActivatedRoute } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { PasswordManagerService } from '../password-manager.service';
 import { CommonModule, NgFor, NgIf } from '@angular/common';
-import { Observable } from 'rxjs';
 import { AES, enc } from 'crypto-js';
 import { AnyCatcher } from 'rxjs/internal/AnyCatcher';
+import { NavbarComponent } from '../navbar/navbar.component';
 
 @Component({
   selector: 'app-password-list',
   standalone: true,
-  imports: [FormsModule, CommonModule, NgFor, NgIf],
+  imports: [FormsModule, CommonModule, NgFor, NgIf, NavbarComponent],
   templateUrl: './password-list.component.html',
   styleUrl: './password-list.component.css'
 })
@@ -128,5 +128,4 @@ export class PasswordListComponent {
     const decPassword = this.decryptPassword(password);
     this.allPasswordList[index].password = decPassword;
   }
-
 }

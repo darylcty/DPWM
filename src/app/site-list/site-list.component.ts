@@ -5,11 +5,12 @@ import { PasswordManagerService } from '../password-manager.service';
 import { Observable } from 'rxjs';
 import { CommonModule, NgFor, NgIf } from '@angular/common';
 import { TimerService } from '../timer.service';
+import { NavbarComponent } from '../navbar/navbar.component';
 
 @Component({
   selector: 'app-site-list',
   standalone: true,
-  imports: [FormsModule, NgFor, NgIf, CommonModule, RouterLink],
+  imports: [FormsModule, NgFor, NgIf, CommonModule, RouterLink, NavbarComponent],
   templateUrl: './site-list.component.html',
   styleUrls: ['./site-list.component.css'],
 })
