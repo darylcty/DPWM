@@ -1,27 +1,40 @@
 # PasswordManager
+>[!WARNING] 
+> Never use actual usernames and passwords when testing this code.
+> Generate your own AES 256bit key.
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.2.2.
+## Description
+This project is attempts to recreate a secure and convienent password manager. It allow users to safely store and manage login credentials for multiple websites and applications.
 
-## Development server
+## Tech Stack
+- Angular, Firebase, Tailwind CSS, Cryto-JS
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## Features
+- Secure storage of passwords using crypto-js.
+- Illustrative and intuitive design to enable easy management of credentials.
+- Edit and delete websites and passwords easily.
+- Seamless user experience with Angular's reactive forms and components.
+- Reliable backend management using Firebase's authentication and database services.
 
-## Code scaffolding
+## Screengrabs
+### Login Page
+![Screenshot 2024-03-05 at 9 27 44 PM](https://github.com/darylcty/DPWM/assets/124702698/ff4650a1-e0ed-499c-abc0-170ec31dfabf)
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+### Successful Login - Site List
+![Screenshot 2024-03-05 at 9 10 54 PM](https://github.com/darylcty/DPWM/assets/124702698/ce733e23-d9fb-4256-bdc2-0a4b10f39313)
 
-## Build
+### Adding a New Site
+![Screenshot 2024-03-05 at 9 34 47 PM](https://github.com/darylcty/DPWM/assets/124702698/e2c6a889-d6f9-4c38-bb8e-19ee92d01307)
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+### Viewing All Passwords for Site
+![Screenshot 2024-03-05 at 9 28 28 PM](https://github.com/darylcty/DPWM/assets/124702698/095625f3-04e2-43d2-af8a-bfd21337d1f5)
 
-## Running unit tests
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## Improvements
+- Enable safe storage of environment values
+- Account Creation
+- UX/UI improvements
 
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+>[!CAUTION]
+> I am not liable for any loss of data or information - this project is not actively maintained!
+>You have been warned!
